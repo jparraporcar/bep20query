@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv").config();
+var columnify = require("columnify");
 const BASE_URL = "https://api.bscscan.com/api";
 const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/g;
 let pr = require("prompt");
@@ -40,7 +41,19 @@ const fetchTxData = (reqAddress) => __awaiter(void 0, void 0, void 0, function* 
     });
     const dataFetched = yield fetch(BASE_URL + "?" + qs);
     const data = yield dataFetched.json();
-    console.log(data);
+    const reducedTxData = data.result.map((txEl) => {
+        const txDate = new Date(Number(txEl.timeStamp) * 1000);
+        console.log(10 ^ txEl.tokenDecimal);
+        const reducedTxData = {
+            hash: txEl.hash,
+            date: txDate,
+            tokenSymbol: txEl.tokenSymbol,
+            value: txEl.value / Math.pow(10, txEl.tokenDecimal),
+        };
+        return reducedTxData;
+    });
+    let columns = columnify(reducedTxData);
+    console.log(columns);
 });
 //
 // creating qs object with user input and predefined pattern

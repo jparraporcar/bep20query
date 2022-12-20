@@ -1,5 +1,6 @@
-import { Schema } from "./types/types";
+import { RawData, ReducedTxData, Schema, TxData } from "./types/types";
 require("dotenv").config();
+var columnify = require("columnify");
 const BASE_URL = "https://api.bscscan.com/api";
 const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/g;
 
@@ -35,8 +36,22 @@ const fetchTxData = async (reqAddress: string) => {
     apikey: process.env.API_KEY as string,
   });
   const dataFetched = await fetch(BASE_URL + "?" + qs);
-  const data = await dataFetched.json();
-  console.log(data);
+  const data: RawData = await dataFetched.json();
+
+  const reducedTxData: any = data.result.map((txEl) => {
+    const txDate = new Date(Number(txEl.timeStamp) * 1000);
+    console.log(10 ^ txEl.tokenDecimal);
+    const reducedTxData: ReducedTxData = {
+      hash: txEl.hash,
+      date: txDate,
+      tokenSymbol: txEl.tokenSymbol,
+      value: txEl.value / Math.pow(10, txEl.tokenDecimal),
+    };
+
+    return reducedTxData;
+  });
+  let columns = columnify(reducedTxData);
+  console.log(columns);
 };
 
 //
