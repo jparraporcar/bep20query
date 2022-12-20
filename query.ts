@@ -1,7 +1,5 @@
-import { StringDecoder } from "string_decoder";
 import { Schema } from "./types/types";
-
-// define base url for calling the endpoint defined in https://docs.bscscan.com/api-endpoints/accounts#get-a-list-of-bep-20-token-transfer-events-by-address
+require("dotenv").config();
 const BASE_URL = "https://api.bscscan.com/api";
 const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/g;
 
@@ -17,17 +15,30 @@ let schema: Schema = {
   },
 };
 
-let reqAddress;
+let reqAddress: string = "";
 
 pr.start();
 pr.get(schema, function (err: Error, result: { address: string }) {
-  if (result) {
-    let reqAddress = result.address;
+  let reqAddress = result.address;
+
+  if (reqAddress != "") {
+    fetchTxData(reqAddress);
   }
-  fetchTxData();
 });
 
-const fetchTxData = async () => {};
+const fetchTxData = async (reqAddress: string) => {
+  const qs = new URLSearchParams({
+    module: "account",
+    action: "tokentx",
+    address: reqAddress,
+    sort: "asc",
+    apikey: process.env.API_KEY as string,
+  });
+  const dataFetched = await fetch(BASE_URL + "?" + qs);
+  const data = await dataFetched.json();
+  console.log(data);
+};
+
 //
 
 // creating qs object with user input and predefined pattern
@@ -41,3 +52,4 @@ const fetchTxData = async () => {};
 
 // others:
 // add prettier config file
+// define interface for qs paramters object

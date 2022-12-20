@@ -7,10 +7,3 @@ export interface Schema {
     };
   };
 }
-export interface AllBEP20TokensQS {
-  module: "account";
-  action: "tokentx";
-  address: "string";
-  sort: "asc" | "desc";
-  apikey: "string";
-}

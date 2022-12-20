@@ -1,42 +1,53 @@
 "use strict";
-exports.__esModule = true;
-// define base url for calling the endpoint defined in https://docs.bscscan.com/api-endpoints/accounts#get-a-list-of-bep-20-token-transfer-events-by-address
-var BASE_URL = "https://api.bscscan.com/api";
-var ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/g;
-var pr = require("prompt");
-var schema = {
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+require("dotenv").config();
+const BASE_URL = "https://api.bscscan.com/api";
+const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/g;
+let pr = require("prompt");
+let schema = {
     properties: {
         address: {
             pattern: ADDRESS_REGEX,
             message: "incorrect address pattern, please try again",
-            required: true
-        }
-    }
+            required: true,
+        },
+    },
 };
-var reqAddress;
+let reqAddress = "";
 pr.start();
 pr.get(schema, function (err, result) {
-    if (result) {
-        var reqAddress_1 = result.address;
+    let reqAddress = result.address;
+    if (reqAddress != "") {
+        fetchTxData(reqAddress);
     }
 });
-console.log(reqAddress);
-console.log("here");
+const fetchTxData = (reqAddress) => __awaiter(void 0, void 0, void 0, function* () {
+    const qs = new URLSearchParams({
+        module: "account",
+        action: "tokentx",
+        address: reqAddress,
+        sort: "asc",
+        apikey: process.env.API_KEY,
+    });
+    const dataFetched = yield fetch(BASE_URL + "?" + qs);
+    const data = yield dataFetched.json();
+    console.log(data);
+});
+//
 // creating qs object with user input and predefined pattern
 // new URLSearchParams({});
 // making https request
 // handling errors
 // showing output to screen
 // others:
-// add import cost to see bundle size
 // add prettier config file
-// ?module=account
-// &action=tokentx
-// &contractaddress=0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51
-// &address=0x7bb89460599dbf32ee3aa50798bbceae2a5f7f6a
-// &page=1
-// &offset=5
-// &startblock=0
-// &endblock=999999999
-// &sort=asc
-// &apikey=YourApiKeyToken
+// define interface for qs paramters object
