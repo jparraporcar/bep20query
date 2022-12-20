@@ -24,13 +24,7 @@ let schema = {
     },
 };
 let reqAddress = "";
-pr.start();
-pr.get(schema, function (err, result) {
-    let reqAddress = result.address;
-    if (reqAddress != "") {
-        fetchTxData(reqAddress);
-    }
-});
+let dataResult = [];
 const fetchTxData = (reqAddress) => __awaiter(void 0, void 0, void 0, function* () {
     const qs = new URLSearchParams({
         module: "account",
@@ -41,9 +35,39 @@ const fetchTxData = (reqAddress) => __awaiter(void 0, void 0, void 0, function* 
     });
     const dataFetched = yield fetch(BASE_URL + "?" + qs);
     const data = yield dataFetched.json();
+    dataResult = [...data.result];
+    const assetListRaw = data.result.map((txEl) => txEl.tokenSymbol);
+    const assetSet = new Set(assetListRaw);
+    const assetList = Array.from(assetSet);
+    const assetObj = {
+        assetSymbol: "",
+        assetBalance: 0,
+    };
+    const assetObjList = [];
+    const calcBalances = (assetList, dataResult) => {
+        for (let i = 0; i < assetList.length; i++) {
+            const assetObj = { assetSymbol: assetList[i], assetBalance: 0 };
+            for (let j = 0; j < dataResult.length; j++) {
+                if (dataResult[j].tokenSymbol === assetList[i]) {
+                    if (dataResult[j].from === reqAddress) {
+                        assetObj.assetBalance +=
+                            dataResult[j].value / Math.pow(10, dataResult[j].tokenDecimal);
+                        console.log("here");
+                        console.log(dataResult[j].value / Math.pow(10, dataResult[j].tokenDecimal));
+                    }
+                    else if (dataResult[j].to === reqAddress) {
+                        assetObj.assetBalance -=
+                            dataResult[j].value / Math.pow(10, dataResult[j].tokenDecimal);
+                    }
+                }
+            }
+            assetObjList.push(assetObj);
+        }
+        console.log(assetObjList);
+    };
+    calcBalances(assetList, dataResult);
     const reducedTxData = data.result.map((txEl) => {
         const txDate = new Date(Number(txEl.timeStamp) * 1000);
-        console.log(10 ^ txEl.tokenDecimal);
         const reducedTxData = {
             hash: txEl.hash,
             date: txDate,
@@ -55,12 +79,10 @@ const fetchTxData = (reqAddress) => __awaiter(void 0, void 0, void 0, function* 
     let columns = columnify(reducedTxData);
     console.log(columns);
 });
-//
-// creating qs object with user input and predefined pattern
-// new URLSearchParams({});
-// making https request
-// handling errors
-// showing output to screen
-// others:
-// add prettier config file
-// define interface for qs paramters object
+pr.start();
+pr.get(schema, function (err, result) {
+    let reqAddress = result.address;
+    if (reqAddress != "") {
+        fetchTxData(reqAddress);
+    }
+});

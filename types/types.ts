@@ -42,3 +42,8 @@ export interface RawData {
   message: string;
   result: TxData[];
 }
+
+export interface AssetBalance {
+  assetSymbol: string;
+  assetBalance: number;
+}
