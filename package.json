@@ -1,0 +1,27 @@
+{
+  "name": "bep20query",
+  "version": "1.0.0",
+  "description": "CLI application which retrieves the asset movements related to a wallet address on the BNB Smart Chain",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jparraporcar/bep20query.git"
+  },
+  "author": "Jordi Parra Porcar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jparraporcar/bep20query/issues"
+  },
+  "homepage": "https://github.com/jparraporcar/bep20query#readme",
+  "dependencies": {
+    "prompt": "^1.3.0",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "@types/prompt": "^1.1.4"
+  }
+}
