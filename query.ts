@@ -83,3 +83,5 @@ pr.get(schema, function (err: Error, result: { address: string }) {
     initData(reqAddress);
   }
 });
+
+// test ...
