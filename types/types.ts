@@ -43,7 +43,7 @@ export interface RawData {
   result: TxData[];
 }
 
-export interface AssetBalance {
+export interface Asset {
   assetSymbol: string;
-  assetBalance: number;
+  assetBalance: number | undefined;
 }

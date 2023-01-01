@@ -2,6 +2,10 @@
 
 CLI application which retrieves the asset movements related to a wallet address on the BNB Smart Chain
 
+### Requirements
+
+latest node version
+
 ### instructions
 
 2 steps to execute:

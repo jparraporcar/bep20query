@@ -4,7 +4,8 @@
   "description": "CLI application which retrieves the asset movements related to a wallet address on the BNB Smart Chain",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "npx tsc && node query.js"
   },
   "repository": {
     "type": "git",
