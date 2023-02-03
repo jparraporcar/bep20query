@@ -8,7 +8,7 @@ latest node version
 
 steps to execute:
 
-- Obtain an API key in from Bscscan.
+- Obtain an API key from Bscscan.
 
 - Create a .env file and add the api key as string as follows:
   API_KEY: 'ObtainedKey'
