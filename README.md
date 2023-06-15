@@ -22,34 +22,36 @@ Before you begin, ensure you have met the following requirements:
 
 To install `BEP20Query`, follow these steps:
 
+1. Clone the repo
+
 ```
 git clone https://github.com/jparraporcar/bep20query.git
 ```
 
-# Navigate into the project directory:
+2. Navigate into the project directory:
 
 ```
 cd bep20query
 ```
 
-# Install the dependencies:
+3. Install the dependencies:
 ```
 npm install
 ```
 
-# Obtain an API key from Bscscan.
+4. Obtain an API key from Bscscan.
 
-# Create a .env file and add the API key as a string as follows: 
+5. Create a .env file and add the API key as a string as follows: 
 ```
 echo "API_KEY='ObtainedKey'" > .env
 ```
 
-# Compile the TypeScript files (only necessary if any .ts file is modified):
+6. Compile the TypeScript files (only necessary if any .ts file is modified):
 ```
 npx tsc
 ```
 
-# Run the application:
+7. Run the application:
 ```
 node query.js
 ```
