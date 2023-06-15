@@ -1,18 +1,80 @@
-CLI application which retrieves the asset movements related to a wallet address on the BNB Smart Chain
+# BEP20Query CLI
 
-### Requirements
+## Table of Contents
+- [Description](#description)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies](#technologies)
+- [Contact](#contact)
 
-latest node version
+## Description
 
-### instructions
+`BEP20Query` is a CLI application that retrieves the asset movements related to a wallet address on the Binance Smart Chain (BSC). Upon execution, the user is prompted to input the wallet address. After confirming, the application displays the quantity of each of the tokens in the queried wallet and a list of all transactions involving the wallet.
 
-steps to execute:
+## Prerequisites
 
-- Obtain an API key from Bscscan.
+Before you begin, ensure you have met the following requirements:
+- You have installed the latest version of [Node.js and npm](https://nodejs.org/)
+- You have a basic understanding of JavaScript and TypeScript
 
-- Create a .env file and add the api key as string as follows:
-  API_KEY: 'ObtainedKey'
-  
-- npx tsc (in case any .ts file is modified, otherwise skip this step)
+## Installation
 
-- node query.js
+To install `BEP20Query`, follow these steps:
+
+```
+git clone https://github.com/jparraporcar/bep20query.git
+```
+
+# Navigate into the project directory:
+
+```
+cd bep20query
+```
+
+# Install the dependencies:
+```
+npm install
+```
+
+# Obtain an API key from Bscscan.
+
+# Create a .env file and add the API key as a string as follows: 
+```
+echo "API_KEY='ObtainedKey'" > .env
+```
+
+# Compile the TypeScript files (only necessary if any .ts file is modified):
+```
+npx tsc
+```
+
+# Run the application:
+```
+node query.js
+```
+
+## Usage
+
+After following the installation steps, you'll be able to use BEP20Query to get token balances and transaction history for a BSC wallet.
+
+## Technologies
+
+`BEP20Query` uses the following technologies:
+
+- [Node.js](https://nodejs.org/) - An open-source, back-end JavaScript runtime environment.
+- [TypeScript](https://www.typescriptlang.org/) - An open-source language which builds on JavaScript by adding static type definitions.
+- [node-fetch](https://github.com/node-fetch/node-fetch) - A light-weight module that brings the Fetch API to Node.js.
+- [prompt](https://www.npmjs.com/package/prompt) - A beautiful command-line prompt for node.js.
+- [dotenv](https://www.npmjs.com/package/dotenv) - A module that loads environment variables from a `.env` file into `process.env`.
+- [columnify](https://www.npmjs.com/package/columnify) - Create text-based columns suitable for console output.
+
+## Contact
+
+If you want to contact me you can reach me at:
+
+- **Name**: `Jordi Parra Porcar`
+- **Email**: `jordiparraporcar@gmail.com`
+- **LinkedIn**: [`Jordi Parra Porcar`](https://www.linkedin.com/in/jordiparraporcar/)
+
+For any additional questions or comments, please feel free to reach out. Contributions, issues, and feature requests are welcome!
