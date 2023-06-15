@@ -13,6 +13,7 @@ require("dotenv").config();
 var columnify = require("columnify");
 const BASE_URL = "https://api.bscscan.com/api";
 const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/g;
+const fetch = require('node-fetch');
 let pr = require("prompt");
 let reqAddress = "";
 let dataResult = [];
@@ -88,3 +89,4 @@ pr.get(schema, function (err, result) {
         initData(reqAddress);
     }
 });
+// test ...
