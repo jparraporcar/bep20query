@@ -16,7 +16,6 @@
 
 Before you begin, ensure you have met the following requirements:
 - You have installed the latest version of [Node.js and npm](https://nodejs.org/)
-- You have a basic understanding of JavaScript and TypeScript
 
 ## Installation
 
