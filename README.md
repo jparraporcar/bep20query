@@ -26,7 +26,7 @@ To install `bep20query`, follow these steps:
 1. Clone the repo
 
 ```
-git clone https://github.com/jparraporcar/bep20-query.git
+git clone https://github.com/jparraporcar/bep20query.git
 ```
 
 2. Navigate into the project directory:
