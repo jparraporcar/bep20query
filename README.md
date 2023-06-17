@@ -1,4 +1,4 @@
-# BEP20Query CLI
+# bep20query
 
 ## Table of Contents
 - [Description](#description)
@@ -10,21 +10,23 @@
 
 ## Description
 
-`BEP20Query` is a CLI application that retrieves the asset movements related to a wallet address on the Binance Smart Chain (BSC). Upon execution, the user is prompted to input the wallet address. After confirming, the application displays the quantity of each of the tokens in the queried wallet and a list of all transactions involving the wallet.
+`bep20query` is a CLI application that retrieves the asset movements related to a wallet address on the Binance Smart Chain (BSC). Upon execution, the user is prompted to input the wallet address. After confirming, the application displays the quantity of each of the tokens in the queried wallet and a list of all transactions involving the wallet.
 
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
+
 - You have installed the latest version of [Node.js and npm](https://nodejs.org/)
+- You have obtained an API key from [Bscscan](https://bscscan.com/)
 
 ## Installation
 
-To install `BEP20Query`, follow these steps:
+To install `bep20query`, follow these steps:
 
 1. Clone the repo
 
 ```
-git clone https://github.com/jparraporcar/bep20query.git
+git clone https://github.com/jparraporcar/bep20-query.git
 ```
 
 2. Navigate into the project directory:
@@ -57,7 +59,7 @@ node query.js
 
 ## Usage
 
-After following the installation steps, you'll be able to use BEP20Query to get token balances and transaction history for a BSC wallet.
+After following the installation steps, you'll be able to use bep20query to get token balances and transaction history for a BSC wallet.
 
 ## Technologies
 
